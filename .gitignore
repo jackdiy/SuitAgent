@@ -66,3 +66,8 @@ output/cases/*/
 # Exclude all case files with real data
 output/cases/*/案件*/ 2>/dev/null || true
 output/cases/*/*案例*/ 2>/dev/null || true
+
+# 排除项目文档和状态文件（已在本地保留）
+docs/*/
+status/*/
+*.md
