@@ -121,13 +121,6 @@ SuitAgent 采用**分层架构设计**，将10个Agent按职能分为4个层级�
 | **诉讼中沟通** | "客户反馈"、"对方反应"、"新情况"、"补充信息" | 策略优化 | `DocAnalyzer → EvidenceAnalyzer(优化证据) → Strategist(调整策略) → Reporter` |
 | **原告案件材料** | "委托起诉"、"准备起诉"、"拟起诉"、"材料清单" | 原告起诉 | `DocAnalyzer → IssueIdentifier → Researcher → EvidenceAnalyzer → Writer(起诉状) → Writer(证据目录) → Summarizer → Reporter` |
 | **委托确定** | "确定委托"、"签署委托"、"办理委托"、"委托材料" | 制作委托材料 | `DocAnalyzer → Writer(委托合同) → Writer(授权委托书) → Writer(谈话笔录) → Summarizer → Reporter` |
-| **保全申请** | "财产保全"、"证据保全"、"先予执行"、"申请保全" | 制作保全申请 | `DocAnalyzer → Strategist(保全必要性) → Writer(保全申请书) → Writer(担保书) → Reporter` |
-| **上诉材料** | "不服判决"、"提起上诉"、"上诉理由"、"二审上诉" | 制作上诉材料 | `DocAnalyzer → Researcher(二审法理) → Strategist(上诉策略) → Writer(上诉状) → Writer(上诉理由书) → Summarizer → Reporter` |
-| **法律意见书** | "法律意见"、"法律建议"、"法律分析意见"、"专业法律意见" | 制作法律意见书 | `DocAnalyzer → Researcher(法律研究) → Strategist(风险评估) → Writer(法律意见书) → Reporter` |
-| **律师函** | "律师函"、"催告函"、"律师警告"、"法律催告" | 制作律师函 | `DocAnalyzer → Strategist(策略分析) → Writer(律师函) → Reporter` |
-| **强制执行申请** | "申请执行"、"申请强制执行"、"执行申请"、"执行程序" | 制作执行申请 | `DocAnalyzer → Researcher(执行依据) → Writer(执行申请书) → Writer(财产清单) → Reporter` |
-| **调解协议** | "调解"、"和解"、"庭外和解"、"调解协议" | 制作调解协议 | `DocAnalyzer → Strategist(和解方案) → Writer(调解协议) → Writer(和解笔录) → Reporter` |
-| **异议申请** | "管辖权异议"、"程序异议"、"答辩异议"、"申请异议" | 制作异议申请 | `DocAnalyzer → Researcher(程序法理) → Writer(异议申请书) → Reporter` |
 
 ### 一键启动方式
 
@@ -298,156 +291,6 @@ SuitAgent 采用**分层架构设计**，将10个Agent按职能分为4个层级�
 - ✅ 委托材料清单
 - ✅ 完整委托材料包
 
-#### 场景8：制作保全申请（财产/证据保全）
-**您只需说**：
-- "申请财产保全"
-- "需要保全"
-- "防止转移财产"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(保全需求分析)
-2. Strategist(保全必要性评估)
-3. Writer(保全申请书)
-4. Writer(担保书)
-5. Reporter(保全材料包)
-```
-
-**输出**：
-- ✅ 保全必要性分析
-- ✅ 财产保全申请书
-- ✅ 担保书
-- ✅ 保全材料包
-
-#### 场景9：制作上诉材料（二审上诉）
-**您只需说**：
-- "不服判决"
-- "提起上诉"
-- "需要上诉状"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(一审判决分析)
-2. Researcher(二审法理研究)
-3. Strategist(上诉策略)
-4. Writer(上诉状)
-5. Writer(上诉理由书)
-6. Summarizer(上诉要点摘要)
-7. Reporter(上诉材料包)
-```
-
-**输出**：
-- ✅ 一审判决分析
-- ✅ 二审法理研究
-- ✅ 上诉状
-- ✅ 上诉理由书
-- ✅ 上诉要点摘要
-- ✅ 上诉材料包
-
-#### 场景10：制作律师函（非诉催告）
-**您只需说**：
-- "发律师函"
-- "法律催告"
-- "律师警告"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(事实情况分析)
-2. Strategist(催告策略)
-3. Writer(律师函)
-4. Reporter(律师函材料)
-```
-
-**输出**：
-- ✅ 法律事实分析
-- ✅ 催告策略建议
-- ✅ 律师函
-- ✅ 催告材料包
-
-#### 场景12：制作法律意见书（专业法律建议）
-**您只需说**：
-- "需要法律意见"
-- "法律分析"
-- "专业建议"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(问题分析)
-2. Researcher(法律研究)
-3. Strategist(风险评估)
-4. Writer(法律意见书)
-5. Reporter(法律意见成果)
-```
-
-**输出**：
-- ✅ 法律问题分析
-- ✅ 法律依据研究
-- ✅ 风险评估报告
-- ✅ 法律意见书
-
-#### 场景13：制作强制执行申请（执行阶段）
-**您只需说**：
-- "申请强制执行"
-- "判决不履行"
-- "需要执行"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(执行依据分析)
-2. Researcher(执行法律依据)
-3. Writer(执行申请书)
-4. Writer(财产线索清单)
-5. Reporter(执行申请材料)
-```
-
-**输出**：
-- ✅ 执行依据审查
-- ✅ 执行法律分析
-- ✅ 强制执行申请书
-- ✅ 财产线索清单
-- ✅ 执行申请材料包
-
-#### 场景14：制作调解协议（庭外和解）
-**您只需说**：
-- "和解谈判"
-- "调解协议"
-- "庭外和解"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(和解需求分析)
-2. Strategist(和解方案设计)
-3. Writer(调解协议)
-4. Writer(和解笔录)
-5. Reporter(和解材料包)
-```
-
-**输出**：
-- ✅ 和解方案设计
-- ✅ 调解协议
-- ✅ 和解笔录
-- ✅ 和解材料包
-
-#### 场景15：制作异议申请（程序性申请）
-**您只需说**：
-- "管辖权异议"
-- "程序异议"
-- "申请异议"
-
-**系统自动执行**：
-```
-1. DocAnalyzer(异议事由分析)
-2. Researcher(程序法理研究)
-3. Writer(异议申请书)
-4. Reporter(异议申请材料)
-```
-
-**输出**：
-- ✅ 异议事由分析
-- ✅ 程序法理研究
-- ✅ 异议申请书
-- ✅ 异议申请材料
-
 ### 💡 使用建议
 
 1. **首次使用**：直接提供文件或描述场景，系统自动处理
@@ -474,6 +317,74 @@ SuitAgent 采用**分层架构设计**，将10个Agent按职能分为4个层级�
 | **风险评估报告** | 专门的风险评估 | 5-10 分钟 |
 
 ## 标准执行方式
+
+### 🚨 工作流完整性保障机制（重要）
+
+为了确保工作流的完整性，避免遗漏关键步骤，系统建立了以下保障机制：
+
+#### 1. 自动触发后续Agent工作流
+
+每个Agent在完成自身工作后，必须**自动触发后续Agent**，而不是等待手动调用。常见的触发序列：
+
+**完整案件分析流程**：
+```
+DocAnalyzer → EvidenceAnalyzer → Scheduler → IssueIdentifier → Researcher → Strategist → Writer → Summarizer → Reporter
+```
+
+**触发时机**：
+- ✅ 每个Agent完成后，立即明确指示需要调用下一个Agent
+- ✅ 在Agent配置的"工作流程"部分明确下一步操作
+- ✅ 禁止手动中断工作流程，除非用户明确要求
+
+#### 2. 🚨 案件标识识别规则（关键）
+
+**重要概念：案件标识**
+案件标识用于命名输出目录，可以是：
+- **有案号时**：`[YYYY]省[城市]民初/行初/刑初[序号]号`
+  - 示例：`[2025]京0105民初1234号`
+- **无案号时**：`{原告姓名}诉{被告姓名}{案由}`
+  - 示例：`甲诉乙著作权侵权案`
+  - 示例：`A公司诉B公司合同纠纷案`
+
+**严禁事项**：
+- ❌ 严禁捏造不存在的案号（如`[2025]深0105民初1107号`）
+- ❌ 严禁创建`output/cases/`子文件夹
+- ✅ 必须直接使用`output/{案件标识}/`作为根目录
+
+#### 3. Agent配置中的后续工作指示
+
+在每个Agent配置中，必须包含"后续工作指引"部分，例如：
+
+```markdown
+## 后续工作指引
+完成本Agent工作后，必须自动调用以下Agent：
+1. 【下一步】调用IssueIdentifier，传递案件信息
+2. 【完成后】调用Researcher，进行法律研究
+3. 【最后】调用Reporter，生成最终报告
+
+⚠️ 禁止在工作进行一半时停止，必须完成整个工作流！
+```
+
+#### 4. 工作流完整性检查清单
+
+执行任何工作流时，必须完成以下检查：
+
+**调用前检查**：
+- [ ] 确认所有前置Agent已完成
+- [ ] 确认输入文件路径正确
+- [ ] 确认输出目录存在
+- [ ] **确认案件标识正确**（无案号时使用当事人信息生成）
+
+**执行中检查**：
+- [ ] Agent能够正确使用工具
+- [ ] 输出文件为正确的.md格式
+- [ ] 输出路径为正确格式：`output/{案件标识}/[目录]/`
+- [ ] **禁止使用`output/cases/`子文件夹**
+
+**调用后检查**：
+- [ ] 完成当前Agent工作
+- [ ] 明确指示下一步Agent调用
+- [ ] 持续触发直到工作流结束
 
 ### 方式一：使用模板（最常用）
 
@@ -676,24 +587,13 @@ SuitAgent 采用**分层架构设计**，将10个Agent按职能分为4个层级�
 所有工作流的输出都应按照标准化目录结构组织：
 
 ```
-output/cases/
+output/
 ├── [案件编号]/              # 按案件编号分类存放
 │   ├── 01_案件分析/             # DocAnalyzer + Strategist输出
 │   ├── 02_法律研究/             # IssueIdentifier + Researcher输出
 │   ├── 03_证据材料/             # EvidenceAnalyzer输出
 │   ├── 04_法律文书/             # Writer输出
-│   │   ├── 起诉状/
-│   │   ├── 答辩状/
-│   │   ├── 代理词/
-│   │   ├── 质证意见书/
-│   │   ├── 申请书/
-│   │   ├── 上诉状/
-│   │   ├── 律师函/
-│   │   ├── 调解协议/
-│   │   ├── 保全申请/
-│   │   ├── 执行申请/
-│   │   ├── 法律意见书/
-│   │   └── 其他文书/
+│   │   └── (按需创建具体文书类型子目录)
 │   ├── 05_综合报告/             # Summarizer + Reporter输出
 │   └── 06_日程管理/             # Scheduler输出
 │       ├── 日程安排/             # 案件时间线管理
@@ -825,6 +725,41 @@ input/
 4. 更新案件上下文
 5. 生成处理报告
 
+### 🔒 文档处理强制规范（重要）
+
+**核心原则**：所有文档处理任务必须通过指定Agent执行，绝对禁止绕过Agent直接使用技能。
+
+#### PDF处理强制规范
+- **所有PDF文档必须通过DocAnalyzer Agent处理**
+- **处理流程**：用户上传PDF → DocAnalyzer Agent → 在prompt中使用pdf技能 → 返回双格式输出
+- **输出要求**：
+  - 必须生成带文字层的PDF文件（可搜索）
+  - 必须生成Markdown文件（可编辑）
+  - OCR识别准确率需达到95%以上
+  - 必须提取结构化数据
+
+#### 工作流程违规示例
+
+❌ **错误做法**（严格禁止）：
+```
+用户上传起诉状.pdf → AI直接使用pdf技能 → 处理结果
+```
+**问题**：绕过DocAnalyzer Agent，违背架构设计
+
+✅ **正确做法**（必须遵循）：
+```
+用户上传起诉状.pdf → 系统调用DocAnalyzer Agent → DocAnalyzer在prompt中使用pdf技能 → 生成起诉状_文字层.pdf + 起诉状.md + 案件要素.json
+```
+
+#### 详细规范
+请参阅：`.claude/memory/standards/DOCUMENT_PROCESSING_ENFORCEMENT.md`
+
+该文档详细说明了：
+- 所有文档类型的强制工作流程
+- Agent与技能的映射关系
+- 质量检查清单
+- 违规案例与纠正方法
+
 ### Agent输出指引
 
 每个Agent都应将输出保存到对应的专门文件夹中：
@@ -834,7 +769,7 @@ input/
 - **IssueIdentifier** → `02_法律研究/` - 争议焦点列表、焦点分析
 - **Researcher** → `02_法律研究/` - 法律研究报告、法条检索、判例研究
 - **EvidenceAnalyzer** → `03_证据材料/` - 证据目录、质证意见、补充证据建议
-- **Writer** → `04_法律文书/[具体文书类型]/` - 12种法律文书分类存储
+- **Writer** → `04_法律文书/[具体文书类型]/` - 各类法律文书按需分类存储
 - **Summarizer** → `05_综合报告/` - 案件摘要、风险摘要
 - **Reporter** → `05_综合报告/` - 综合分析报告、阶段进展报告
 - **Scheduler** → `06_日程管理/` - 期限提醒、工时统计、日程安排 (支持YAML+MD双版本)
@@ -846,373 +781,41 @@ input/
 - ALWAYS prefer editing an existing file to creating a new one.
 - NEVER proactively create documentation files (*.md) unless requested.
 
+## 📋 文档记录规范
+
+### 允许记录的文档内容
+项目文档应该专注于记录**项目本身的更新**，包括：
+- ✅ 系统架构变更（agents配置、workflow修改等）
+- ✅ 功能新增或优化（新增agent、改进工作流等）
+- ✅ 文档规范更新（协作流程、模板变更等）
+- ✅ 工具或技能集成（新的Claude Code技能、配置优化等）
+- ✅ 项目决策记录（架构选择、技术选型等）
+
+### 🚫 严禁记录的文档内容
+**严格禁止**在项目文档中记录：
+- ❌ 具体案件的分析结果
+- ❌ 具体案件的法律文书
+- ❌ 具体案件的争议焦点识别
+- ❌ 具体案件的法律研究报告
+- ❌ 具体案件的策略方案
+- ❌ 具体案件的质量审查报告
+- ❌ 具体案件的工作记录和工时统计
+
+### 📌 文档边界原则
+**项目文档 vs 案件档案**：
+- **项目文档** (`docs/`, `status/`, `.claude/`): 记录项目自身的更新和改进
+- **案件档案** (`output/`): 存储所有具体案件的分析成果和工作成果
+
+**核心原则**: 项目文档是关于"如何建设 SuitAgent 系统"的记录，而不是"如何使用 SuitAgent 系统处理案件"的记录。
+
 ---
 
 > 更多详细配置请参阅：
-> - `.claude/agents/` 目录下的各组件配置文件
+> - `.claude/agents/` 目录下的各组件配置文件（10个Agent的详细说明）
 > - `.claude/memory/` 目录下的知识库和模板（法律模板、规范标准、AI技能等）
-> - `output/cases/` 目录下的文档管理结构
+> - `.claude/memory/workflows/` 目录下的详细工作流程
+> - `output/` 目录下的文档管理结构
 
 ---
 
-## 附录 A：agents详细规范
-
-### 1. DocAnalyzer（文档分析器）
-**配置文件**: `agents/DocAnalyzer.md`
-**核心功能**: 分析各类法律文档（起诉状、证据、庭审笔录等）
-**可独立使用**: ✓ 是
-**输入**: 文档文件
-**输出**: 案件要素、文档摘要
-
-### 2. EvidenceAnalyzer（证据分析器）
-**配置文件**: `agents/EvidenceAnalyzer.md`
-**核心功能**: 证据分析、质证意见、补充证据清单
-**可独立使用**: ✓ 是
-**输入**: 证据材料
-**输出**: 证据分析报告、质证意见
-
-### 3. IssueIdentifier（争议识别器）
-**配置文件**: `agents/IssueIdentifier.md`
-**核心功能**: 识别和归类争议焦点
-**可独立使用**: ✓ 是
-**输入**: 案件要素
-**输出**: 争议焦点列表
-
-### 4. Researcher（法律研究器）
-**配置文件**: `agents/Researcher.md`
-**核心功能**: 法条解读、判例检索、法律适用路径
-**可独立使用**: ✓ 是
-**输入**: 争议焦点
-**输出**: 法律研究报告
-
-### 5. Strategist（策略制定者）
-**配置文件**: `agents/Strategist.md`
-**核心功能**: SWOT分析、策略制定、风险评估
-**可独立使用**: ✓ 是
-**输入**: 案件分析、法律研究
-**输出**: 策略方案、风险评估
-
-### 6. Writer（文书起草者）
-**配置文件**: `agents/Writer.md`
-**核心功能**: 起草答辩状、代理词、质证意见等
-**可独立使用**: ✓ 是
-**输入**: 所有分析结果
-**输出**: 法律文书
-**模板库**: `.claude/templates/legal_briefs/`
-
-### 7. Summarizer（摘要生成者）
-**配置文件**: `agents/Summarizer.md`
-**核心功能**: 生成各类摘要和简报
-**可独立使用**: ✓ 是
-**输入**: 任意内容
-**输出**: 摘要报告
-
-### 8. Reporter（报告者）
-**配置文件**: `agents/Reporter.md`
-**核心功能**: 整合所有内容，生成最终报告
-**可独立使用**: ✓ 是
-**输入**: 所有输出
-**输出**: 综合性报告
-
-### 9. Scheduler（日程规划者）
-**配置文件**: `agents/Scheduler.md`
-**核心功能**: 法律期限管理和工时统计
-**可独立使用**: ✓ 是
-**输入**: 法院文件、工作记录
-**输出**: 期限提醒、时间线、工时报表
-
-### 10. 🆕 Reviewer（智能审查器）
-**配置文件**: `agents/Reviewer.md`
-**核心功能**: 跨Agent质量审查、全局一致性检查、风险识别与预警
-**可独立使用**: ✓ 是（作为Subagent）
-**触发方式**: Subagent模式被调用（自动/手动/条件触发）
-**输入**: 所有Agent的输出
-**输出**: 质量评估报告、问题清单、修改建议、风险评级
-**审查范围**: 格式规范、法律适用、逻辑严密性、数据一致性、风险评估
-**质量评级**: A/B/C/D四级评分体系
-**调用场景**: 高风险案件、重要文书、质量异常、用户要求
-**未来规划**: 文件生成后hooks自动审查机制（见ROADMAP.md）
-
----
-
-## 附录 A.1：Claude Code 技能（Skills）规范
-
-SuitAgent 系统中使用的 Claude Code 官方技能，通过 `.claude/skills/` 目录提供扩展功能。
-
-### 可用技能
-
-#### 1. new-case（案件创建技能）
-**技能文件**: `.claude/skills/new-case.md`
-**核心功能**: 在 SuitAgent 系统中创建标准化的案件工作目录结构
-**使用方法**: 在对话中直接说明："请为案件 [2025]京0105民初1234号 创建工作区"
-**可独立使用**: ✓ 是
-**功能说明**:
-- 自动创建包含6个标准子目录的案件工作区
-- 复制模板文件并自动重命名
-- 创建 `[案件编号].yaml` 和 `[案件编号].md` 管理文件
-- 验证案件编号格式并检查冲突
-- 替换文件中的占位符为实际案件编号
-
-**模板来源**: `.claude/memory/case-template/`
-
-#### 2. docx（Word文档处理）
-**技能文件**: `.claude/skills/docx.md`
-**核心功能**: Word 文档的创建、编辑和分析
-**可独立使用**: ✓ 是
-**主要功能**:
-- 创建新 Word 文档
-- 编辑现有文档
-- 跟踪修改和批注
-- 文档格式转换
-
-#### 3. pdf（PDF文档处理）
-**技能文件**: `.claude/skills/pdf.md`
-**核心功能**: PDF 文档的创建、编辑和分析
-**可独立使用**: ✓ 是
-**主要功能**:
-- PDF 文档解析
-- 文本和表格提取
-- PDF 合并和分割
-- 表单处理
-
-#### 4. xlsx（Excel文档处理）
-**技能文件**: `.claude/skills/xlsx.md`
-**核心功能**: Excel 文档的创建、编辑和分析
-**可独立使用**: ✓ 是
-**主要功能**:
-- 数据分析
-- 公式计算
-- 图表生成
-- 数据可视化
-
-### 技能使用方式
-
-**方式一：直接对话调用**
-在对话中自然描述需求，系统自动匹配相应技能：
-```
-"请为案件 [2025]京0105民初1234号 创建工作区"
-"需要处理这个 Word 文档"
-"要分析这个 PDF 文件"
-```
-
-**方式二：JSON 配置调用**
-```json
-{
-  "skill": "new-case",
-  "parameters": {
-    "case_id": "[2025]京0105民初1234号"
-  }
-}
-```
-
-### 技能开发规范
-
-所有新技能应：
-1. 遵循 Claude Code 技能文件格式（YAML front matter + 详细文档）
-2. 存放在 `.claude/skills/` 目录
-3. 包含清晰的功能说明和使用示例
-4. 提供完整的错误处理和验证机制
-5. 支持独立使用和集成使用
-
----
-
-## 附录 B：诉讼阶段快速启动模板
-
-### 1. 初始案件分析 (initial_case_analysis)
-**适用场景**: 接收新案件时的全面分析
-**工作流组合**:
-```
-DocAnalyzer → IssueIdentifier → Researcher → Strategist → Writer → Summarizer → Reporter
-```
-**预计时间**: 20-25 分钟
-
-### 2. 新证据质证 (evidence_review)
-**适用场景**: 收到新证据材料，需要写质证意见
-**工作流组合**:
-```
-DocAnalyzer(新证据) + EvidenceAnalyzer → Researcher(针对争议) → Writer(质证意见) → Summarizer
-```
-**预计时间**: 10-15 分钟
-**特点**: 复用之前的争议焦点分析
-
-### 3. 答辩意见起草 (defense_drafting)
-**适用场景**: 收到起诉状，需要起草答辩意见
-**工作流组合**:
-```
-DocAnalyzer(起诉状) → IssueIdentifier → Researcher → Writer(答辩状) → Summarizer
-```
-**预计时间**: 15-20 分钟
-
-### 4. 补充证据 (evidence_supplement)
-**适用场景**: 发现证据不足，需要补充证据
-**工作流组合**:
-```
-EvidenceAnalyzer(现有证据) → Researcher → Strategist → EvidenceAnalyzer(补充清单)
-```
-**预计时间**: 8-12 分钟
-
-### 5. 庭审笔录分析 (hearing_record_analysis)
-**适用场景**: 庭审后分析，调整策略
-**工作流组合**:
-```
-DocAnalyzer(庭审笔录) → EvidenceAnalyzer(对比前后) → Strategist(调整策略) → Summarizer
-```
-**预计时间**: 12-18 分钟
-
-### 6. 代理词起草 (proxy_drafting)
-**适用场景**: 庭前或庭后起草代理词
-**工作流组合**:
-```
-DocAnalyzer(全案材料) → EvidenceAnalyzer → IssueIdentifier → Researcher → Strategist → Writer(代理词) → Reporter
-```
-**预计时间**: 20-30 分钟
-
-### 7. 案件进展总结 (case_progress_summary)
-**适用场景**: 阶段性总结汇报
-**工作流组合**:
-```
-DocAnalyzer(庭审笔录) + EvidenceAnalyzer(全证据) + Summarizer → Strategist → Reporter(阶段报告)
-```
-**预计时间**: 10-15 分钟
-
-### 8. 风险评估报告 (risk_assessment)
-**适用场景**: 需要专门的风险评估
-**工作流组合**:
-```
-Strategist → Summarizer(风险摘要) → Reporter
-```
-**预计时间**: 5-10 分钟
-
----
-
-## 附录 C：法律文书模板库
-
-### 可用模板
-
-| 模板名称 | 文件名 | 适用场景 |
-|----------|--------|----------|
-| 起诉状 | `complaint.md` | 提起诉讼 |
-| 答辩状 | `defense.md` | 收到起诉状后 |
-| 代理词 | `proxy_opinion.md` | 庭审前/后 |
-| 质证意见书 | `evidence_opinion.md` | 对新证据质证 |
-| 申请书 | `application.md` | 申请特定事项 |
-| 上诉状 | `appeal.md` | 不服一审判决 |
-
-### 使用方法
-Writer 组件会自动根据文书类型选择对应模板，并根据输入内容填充。
-
-详细模板规范请参阅：`.claude/templates/legal_briefs/README.md`
-
----
-
-## 附录 D：技术细节
-
-### 上下文继承机制
-
-#### 继承字段
-- case_id：案件ID
-- case_basics：案件基本信息
-- legal_issues：争议焦点
-- legal_research：法律研究结果
-- strategy_plan：策略方案
-- evidence_analysis：证据分析
-- generated_briefs：已生成文书
-
-#### 使用方式
-在模板配置中设置 `context_inherit.enabled: true`，系统将自动继承并更新上下文。
-
-### 并行执行支持
-
-#### 可并行组合
-- **DocAnalyzer** + **EvidenceAnalyzer**（分析新证据时）
-- **IssueIdentifier** + **EvidenceAnalyzer**（庭审后分析时）
-- **Researcher** 内部步骤（法条+判例）
-- **Strategist** 内部步骤（SWOT+风险评估）
-
-#### 串行依赖
-- **Researcher** 依赖 **IssueIdentifier**
-- **Strategist** 依赖 **Researcher**
-- **Writer** 依赖 **Strategist** + **Researcher**
-
-### 自定义工作流示例
-
-```json
-{
-  "name": "CustomWorkflow",
-  "components": [
-    "DocAnalyzer",
-    {"name": "IssueIdentifier", "parallel": true},
-    "Researcher"
-  ],
-  "inputs": {},
-  "outputs": {}
-}
-```
-
----
-
-## 附录 E：完整目录结构
-
-```
-.claude/
-├── agents/                    # 10个agents
-│   ├── DocAnalyzer.md         # 文档分析器
-│   ├── EvidenceAnalyzer.md    # 证据分析器
-│   ├── IssueIdentifier.md     # 争议识别器
-│   ├── Researcher.md          # 法律研究者
-│   ├── Strategist.md          # 策略制定者
-│   ├── Writer.md              # 文书起草者
-│   ├── Summarizer.md          # 摘要生成者
-│   ├── Reporter.md            # 报告整合者
-│   ├── Scheduler.md           # 日程规划者
-│   └── Reviewer.md            # 智能审查器（Subagent模式）
-├── memory/                    # 知识库和模板
-│   ├── standards/            # 规范标准文档（AI使用）
-│   │   ├── QUALITY_REVIEW_STANDARDS.md  # 质量审查标准
-│   │   ├── AGENT_OUTPUT_MANAGEMENT.md   # Agent输出管理规范
-│   │   ├── DEVELOPMENT.md               # AI代理协作规范
-│   │   └── INTELLIGENT_CASE_RECOGNITION.md  # 案件智能识别设计
-│   ├── templates/            # 快速启动模板
-│   │   ├── initial_case_analysis.json
-│   │   ├── evidence_review.json
-│   │   ├── defense_drafting.json
-│   │   ├── evidence_supplement.json
-│   │   ├── hearing_record_analysis.json
-│   │   ├── proxy_drafting.json
-│   │   ├── case_progress_summary.json
-│   │   ├── risk_assessment.json
-│   │   └── legal_briefs/         # 法律文书模板库
-│   │       ├── README.md
-│   │       ├── defense.md        # 答辩状模板
-│   │       ├── proxy_opinion.md  # 代理词模板
-│   │       └── ...
-│   ├── case-template/        # 案件模板目录（用于new-case技能）
-│   │   ├── [案件编号].yaml    # 案件管理看板模板
-│   │   ├── [案件编号].md      # 案件工作记录模板
-│   │   ├── 01_案件分析/         # 案件分析输出目录
-│   │   ├── 02_法律研究/         # 法律研究输出目录
-│   │   ├── 03_证据材料/         # 证据分析输出目录
-│   │   ├── 04_法律文书/         # 12种法律文书输出目录
-│   │   ├── 05_综合报告/         # 报告整合输出目录
-│   │   └── 06_日程管理/         # 日程规划输出目录
-│   ├── legal_templates.md    # 法律模板库
-│   ├── legal_deadlines.md    # 法律期限速查
-│   └── claude_code_skills.md # Claude Code 技能参考
-├── docs/                      # 系统文档（项目进展）
-│   ├── DECISIONS.md           # 架构决策记录
-│   ├── ROADMAP.md             # 项目路线图
-│   ├── ARCHITECTURE.md        # 系统架构文档
-│   └── research/              # 研究文档
-├── output/                    # 案件工作输出目录
-│   └── cases/                 # 按案件编号分类存放
-│       └── [案件编号]/        # 案件工作区
-│           ├── [案件编号].yaml    # 案件管理看板数据
-│           ├── [案件编号].md      # 案件工作记录
-│           └── ...             # 其他工作流输出
-└── CLAUDE.md                 # 本文件
-```
-
----
-
-*本文档整合了协作指南和所有技术细节，为 SuitAgent 系统提供完整的使用说明。*
-
+*本文档整合了协作指南和核心工作流，为 SuitAgent 系统提供完整的元指令指导。*

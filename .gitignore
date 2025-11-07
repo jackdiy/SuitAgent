@@ -49,6 +49,7 @@ temp/
 # Claude specific
 .claude/settings.local.json
 .claude/credentials.json
+.claude/tools/
 
 # Input/output files (可能包含敏感信息)
 input/*
