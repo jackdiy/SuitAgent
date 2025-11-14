@@ -224,7 +224,34 @@ SuitAgent 采用**四层架构设计**，将10个Agent按职能分为4个层级�
 
 ## 🛠️ 安装指南
 
-### 前提条件：安装Node.js
+### 🚀 自动化安装（推荐）
+
+SuitAgent 提供了一键自动化安装脚本，无需手动配置！
+
+```bash
+# 方式一：本地运行（已下载项目）
+./install.sh
+
+# 方式二：直接下载运行
+curl -sSL https://raw.githubusercontent.com/cat-xierluo/SuitAgent/main/install.sh | bash
+```
+
+安装脚本将自动：
+- ✅ 检测并安装 Node.js（如果需要）
+- ✅ 安装 Claude Code CLI
+- ✅ 安装 Zed 编辑器（可选）
+- ✅ 选择并配置 AI 模型供应商
+- ✅ 生成配置文件
+- ✅ 验证安装结果
+- ✅ 在 Zed 中打开项目（可选）
+
+详细说明请查看：[INSTALL.md](./INSTALL.md) 和 [QUICKSTART.md](./QUICKSTART.md)
+
+---
+
+### 手动安装（高级用户）
+
+#### 前提条件：安装Node.js
 
 SuitAgent 基于 **Claude Code CLI** 运行，而Claude Code CLI需要Node.js环境。
 

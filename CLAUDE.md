@@ -582,6 +582,59 @@ DocAnalyzer → EvidenceAnalyzer → Scheduler → IssueIdentifier → Researche
 
 ## 文档管理结构
 
+### 文档转换命令
+
+#### Markdown转Word命令
+
+使用 `/2word` 命令快速将Markdown文档转换为Word格式，支持多种个性化格式配置：
+
+```bash
+# 基础转换（使用默认格式）
+/2word input.md output.docx
+
+# 指定特定格式
+/2word --format=legal-standard 起诉状.md 起诉状.docx  # 法律文书标准格式
+/2word --format=simple 证据目录.md 证据目录.docx     # 简化格式
+/2word --format=default 研究报告.md 研究报告.docx    # 默认格式
+
+# 使用自定义格式
+/2word --format=my-custom 案件分析.md 案件分析.docx
+```
+
+**预设格式**：
+- **default**: 通用标准格式，基于md2word.py，仿宋_GB2312（中文正文）+ Times New Roman（英文），1.5倍行距
+- **legal-standard**: 法律文书标准格式，基于md2word.py，符合法院要求，包含完整编号系统、签名区域、法条引用格式
+- **simple**: 简化格式，Times New Roman + Arial，1.15倍行距，适合内部文档快速转换
+
+**自定义格式**：
+- 创建位置：`.claude/memory/docxformats/my-custom.md`
+- 参考模板：`.claude/memory/docxformats/custom-template.md`
+- 支持完全自定义：字体、段落、页面布局、颜色方案、列表样式、表格样式等
+
+**功能特性**：
+- ✅ 保持Markdown原有结构（标题、列表、表格等）
+- ✅ 支持3种预设格式 + 无限制自定义格式
+- ✅ 格式配置与转换逻辑完全分离
+- ✅ 完全支持中文文档转换
+- ✅ 支持法律文书特有格式（编号系统、签名区域等）
+
+**适用场景**：
+- 📄 起诉状、答辩状、代理词等法律文书（推荐：legal-standard格式）
+- 📄 案件分析报告、法律研究报告（推荐：default格式）
+- 📄 工作记录、笔记、内部报告（推荐：simple格式）
+- 📄 个性化定制文档（推荐：自定义格式）
+
+**格式配置目录**：
+```
+.claude/memory/docxformats/
+├── md2word.py             # 完整的转换代码（用户提供，测试可用）
+├── default.md              # 默认格式（基于md2word.py）
+├── legal-standard.md       # 法律文书标准格式（基于md2word.py）
+├── simple.md              # 简化格式
+├── custom-template.md     # 自定义模板
+└── my-custom.md           # 您的自定义格式（需要创建）
+```
+
 ### 输出目录规范
 
 所有工作流的输出都应按照标准化目录结构组织：
